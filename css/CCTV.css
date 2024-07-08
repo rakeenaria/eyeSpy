@@ -1,0 +1,110 @@
+body{
+    width: auto;
+    padding-left: 40px;
+    background-color: #f5f5f5;
+}
+
+.judul{
+    margin-top: 70px;
+    font-weight: bold;
+}
+
+.kabupaten{
+    background-color: rgb(234, 234, 234);
+    border-width: 0;
+    border-radius: 15px;
+}
+
+.isi{
+    width: 100%;
+    display: grid;
+    margin-top: 10px;
+    grid-template-rows: repeat(4, 320px);
+    grid-template-columns: repeat(auto-fit, 390px);
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+}
+
+.CCTV{
+    text-align: center;
+    width: 350px;
+    height: 280px;
+    position: relative;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: rgb(0, 0, 0); 
+    margin-top: 30px;
+}
+.CCTV:hover {
+    transform: scale(1.05);
+    transition: transform 0.8s;
+  }
+
+.CCTV h3{
+    padding-top: 5px;
+}
+
+.CCTV img{
+    width: 95%;
+    height: 85%;
+    padding-bottom: 2%;
+}
+
+.isi2{
+
+    display: flex;
+}
+
+.videoCCTV{
+    width: 70%;
+}
+
+.videoCCTV video{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 15px 15px 30px rgba(170, 169, 169, 0.25);
+    border-radius: 10px;
+}
+
+.report-form{
+    margin-top: 20px;
+    padding-left: 30px;
+}
+
+.report-form textarea {
+    position: absolute;
+    left: 73%;
+    padding: 10px;
+    background: linear-gradient(0deg,#ffffff, #ffffff, #f9f9f9, #e6e6e6);
+    border-radius: 10px;
+    border-width: 0px;
+    margin-right: 10px;
+    width: 25%;
+    height: 300px;
+    box-sizing: border-box;
+    box-shadow: 15px 15px 30px rgba(170, 169, 169, 0.25);
+    resize: none;
+    
+}
+
+.report-form button {
+    position: absolute;
+    padding: 7px 15px;
+    margin-top: 320px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 15px 15px 30px rgba(170, 169, 169, 0.25);
+    right: 2%;
+}
+
+.report-form button:hover {
+    background-color: #a30000;
+}
+

@@ -1,0 +1,116 @@
+body {
+  width: auto;
+  height: auto;
+  background-color: #f5f5f5;
+  margin-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+body h1 {
+  margin-left: 40px;
+  width: 90%;
+}
+
+body h3 {
+  text-align: center;
+}
+
+#segmen {
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.statistik {
+  width: 60%;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.prediksi {
+  padding: 20px;
+  width: 33%;
+  background: linear-gradient(45deg, #ffdabd, #ffffff, #ffffff, #ffffff, #ffffff, #e6d8ff);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.isiPrediksi {
+  color: #000000;
+  margin-top: 20px;
+  font-weight: bold;
+  max-height: 450px; /* Sesuaikan tinggi maksimum sesuai kebutuhan Anda */
+  overflow-y: auto; /* Menambahkan scrollbar vertikal jika konten melebihi tinggi maksimum */
+}
+
+.lingkaran_lokasi {
+  width: 46%;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.lingkaran_kejahatan {
+  width: 47%;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chart {
+  width: 100%; /* Adjust as needed, e.g., 800px, 400px, etc. */
+  height: auto; /* Adjust as needed, or use specific height like 400px */
+}
+
+.chart-grafik {
+  width: 92%;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.chart-lingkaran {
+  width: 80%;
+  height: 500px;
+  margin: auto;
+}
+
+.poll-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.poll-result {
+  margin: 20px 0;
+}
+.poll-result div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.poll-bar {
+  flex-grow: 1;
+  background-color: #4caf50;
+  height: 20px;
+  margin-left: 10px;
+}
+.chart-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
