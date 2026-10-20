@@ -1,0 +1,45 @@
+- generic [active] [ref=f5e1]:
+  - navigation [ref=f5e2]:
+    - text: 
+    - link "eyeSpy" [ref=f5e3] [cursor=pointer]:
+      - /url: index.php
+    - list [ref=f5e4]:
+      - text: 
+      - listitem [ref=f5e5]:
+        - link "Dashboard" [ref=f5e6] [cursor=pointer]:
+          - /url: index.php
+      - listitem [ref=f5e7]:
+        - link "CCTV" [ref=f5e8] [cursor=pointer]:
+          - /url: daftarCCTV.php
+      - listitem [ref=f5e9]:
+        - link "Laporan" [ref=f5e10] [cursor=pointer]:
+          - /url: laporan.php
+    - generic [ref=f5e11] [cursor=pointer]: 
+    - generic:
+      - generic: 
+      - textbox "Cari..."
+  - main [ref=f5e12]:
+    - link " Kembali ke daftar CCTV" [ref=f5e13] [cursor=pointer]:
+      - /url: daftarCCTV.php
+      - generic [ref=f5e14]: 
+      - text: Kembali ke daftar CCTV
+    - generic [ref=f5e15]:
+      - generic [ref=f5e16]:
+        - paragraph [ref=f5e17]: CCTV Jogja Istimewa
+        - heading "CCTV - Simpang BPK" [level=1] [ref=f5e18]
+        - paragraph [ref=f5e19]: Dinas Kominfosan Yogyakarta
+      - generic [ref=f5e20]: Terhubung
+    - generic [ref=f5e21]:
+      - region "Pemutar CCTV" [ref=f5e22]:
+        - status [ref=f5e24]: Stream diterima. Menyiapkan pemutaran…
+        - button " Coba muat ulang stream" [ref=f5e25] [cursor=pointer]:
+          - generic [ref=f5e26]: 
+          - text: Coba muat ulang stream
+        - paragraph [ref=f5e27]:
+          - text: "Sumber:"
+          - link "Portal CCTV Jogja Istimewa" [ref=f5e28] [cursor=pointer]:
+            - /url: https://cctv.jogjaprov.go.id/
+          - text: . Status “terhubung” berasal dari metadata sumber dan belum menjamin pemutaran berhasil.
+      - generic [ref=f5e29]:
+        - textbox "Tuliskan keterangan kejadian" [ref=f5e30]
+        - button "Laporkan" [ref=f5e31] [cursor=pointer]

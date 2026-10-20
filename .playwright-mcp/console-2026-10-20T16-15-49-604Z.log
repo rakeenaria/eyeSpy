@@ -1,0 +1,6 @@
+[    3438ms] [WARNING] Failed to decode downloaded font: https://unicons.iconscout.com/release/v4.0.0/fonts/line/unicons-15.woff2 @ http://localhost/PSI/PROJECT%20eyeSpy/daftarCCTV.php:0
+[    3438ms] [WARNING] OTS parsing error: invalid sfntVersion: -1981001572 @ http://localhost/PSI/PROJECT%20eyeSpy/daftarCCTV.php:0
+[    3438ms] [WARNING] Failed to decode downloaded font: https://unicons.iconscout.com/release/v4.0.0/fonts/line/unicons-10.woff2 @ http://localhost/PSI/PROJECT%20eyeSpy/daftarCCTV.php:0
+[    3438ms] [WARNING] OTS parsing error: invalid sfntVersion: 454379844 @ http://localhost/PSI/PROJECT%20eyeSpy/daftarCCTV.php:0
+[    3438ms] [WARNING] Failed to decode downloaded font: https://unicons.iconscout.com/release/v4.0.0/fonts/line/unicons-6.woff2 @ http://localhost/PSI/PROJECT%20eyeSpy/daftarCCTV.php:0
+[    3438ms] [WARNING] OTS parsing error: invalid sfntVersion: 1936028172 @ http://localhost/PSI/PROJECT%20eyeSpy/daftarCCTV.php:0

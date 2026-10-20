@@ -1,0 +1,8 @@
+[      40ms] [WARNING] Failed to decode downloaded font: https://unicons.iconscout.com/release/v4.0.0/fonts/line/unicons-10.woff2 @ http://localhost/PSI/PROJECT%20eyeSpy/isiCCTV.php?source=jogja-istimewa&id=809:0
+[      40ms] [WARNING] OTS parsing error: invalid sfntVersion: 454379844 @ http://localhost/PSI/PROJECT%20eyeSpy/isiCCTV.php?source=jogja-istimewa&id=809:0
+[      40ms] [WARNING] Failed to decode downloaded font: https://unicons.iconscout.com/release/v4.0.0/fonts/line/unicons-15.woff2 @ http://localhost/PSI/PROJECT%20eyeSpy/isiCCTV.php?source=jogja-istimewa&id=809:0
+[      40ms] [WARNING] OTS parsing error: invalid sfntVersion: -1981001572 @ http://localhost/PSI/PROJECT%20eyeSpy/isiCCTV.php?source=jogja-istimewa&id=809:0
+[      40ms] [WARNING] Failed to decode downloaded font: https://unicons.iconscout.com/release/v4.0.0/fonts/line/unicons-6.woff2 @ http://localhost/PSI/PROJECT%20eyeSpy/isiCCTV.php?source=jogja-istimewa&id=809:0
+[      40ms] [WARNING] OTS parsing error: invalid sfntVersion: 1936028172 @ http://localhost/PSI/PROJECT%20eyeSpy/isiCCTV.php?source=jogja-istimewa&id=809:0
+[    8015ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cctv.jogjaprov.go.id/cctv-proxy/atcs-kota/streams/APMD.stream.m3u8:0
+[   99462ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cctv.jogjaprov.go.id/cctv-proxy/atcs-kota/streams/APMD.stream.m3u8:0

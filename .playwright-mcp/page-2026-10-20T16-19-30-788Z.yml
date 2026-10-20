@@ -1,0 +1,45 @@
+- generic [active] [ref=f3e1]:
+  - navigation [ref=f3e2]:
+    - text: 
+    - link "eyeSpy" [ref=f3e3] [cursor=pointer]:
+      - /url: index.php
+    - list [ref=f3e4]:
+      - text: 
+      - listitem [ref=f3e5]:
+        - link "Dashboard" [ref=f3e6] [cursor=pointer]:
+          - /url: index.php
+      - listitem [ref=f3e7]:
+        - link "CCTV" [ref=f3e8] [cursor=pointer]:
+          - /url: daftarCCTV.php
+      - listitem [ref=f3e9]:
+        - link "Laporan" [ref=f3e10] [cursor=pointer]:
+          - /url: laporan.php
+    - generic [ref=f3e11] [cursor=pointer]: 
+    - generic:
+      - generic: 
+      - textbox "Cari..."
+  - main [ref=f3e12]:
+    - link " Kembali ke daftar CCTV" [ref=f3e13] [cursor=pointer]:
+      - /url: daftarCCTV.php
+      - generic [ref=f3e14]: 
+      - text: Kembali ke daftar CCTV
+    - generic [ref=f3e15]:
+      - generic [ref=f3e16]:
+        - paragraph [ref=f3e17]: CCTV Jogja Istimewa
+        - heading "CCTV - Alun-alun Wates sebelah Utara (tiang bendera)" [level=1] [ref=f3e18]
+        - paragraph [ref=f3e19]: Dinas Kominfo Kulon Progo
+      - generic [ref=f3e20]: Offline
+    - generic [ref=f3e21]:
+      - region "Pemutar CCTV" [ref=f3e22]:
+        - status [ref=f3e24]: Kamera saat ini ditandai tidak terhubung oleh sumber resmi. Video cadangan sedang ditampilkan.
+        - button " Coba muat ulang stream" [ref=f3e25] [cursor=pointer]:
+          - generic [ref=f3e26]: 
+          - text: Coba muat ulang stream
+        - paragraph [ref=f3e27]:
+          - text: "Sumber:"
+          - link "Portal CCTV Jogja Istimewa" [ref=f3e28] [cursor=pointer]:
+            - /url: https://cctv.jogjaprov.go.id/
+          - text: . Status “terhubung” berasal dari metadata sumber dan belum menjamin pemutaran berhasil.
+      - generic [ref=f3e29]:
+        - textbox "Tuliskan keterangan kejadian" [ref=f3e30]
+        - button "Laporkan" [ref=f3e31] [cursor=pointer]

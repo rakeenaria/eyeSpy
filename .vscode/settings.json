@@ -1,0 +1,7 @@
+{
+    "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
+    "code-runner.executorMap": {
+        "php": "C:\\xampp\\php\\php.exe"
+    },
+    "code-runner.runInTerminal": true
+}

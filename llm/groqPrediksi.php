@@ -1,0 +1,48 @@
+<?php
+require_once __DIR__ . '/groqHelper.php';
+include __DIR__ . '/../php/koneksi.php';
+
+// Ambil nilai bulan dari form
+$bulanInt = getSelectedMonth();
+$bulan = getSelectedMonthLabel($bulanInt);
+$filterBulanLk = $bulanInt !== null ? "WHERE MONTH(lk.waktu) = $bulanInt" : "";
+$filterBulanLk2 = $bulanInt !== null ? "AND MONTH(lk2.waktu) = $bulanInt" : "";
+
+// Modifikasi query SQL untuk memfilter dan mengurutkan berdasarkan jumlah laporan terbanyak
+$sql = "SELECT t.id_tempat, t.nama_tempat, COUNT(lk.id) as jumlah_laporan, COUNT(DISTINCT lk.jenis_kejahatan) as variasi_kejahatan, 
+    (SELECT jk.nama_jenis 
+    FROM laporan_kejahatan lk2 
+    JOIN jenis_kejahatan jk ON lk2.jenis_kejahatan = jk.id_jenis 
+    WHERE lk2.tempat_kejadian = t.id_tempat 
+    $filterBulanLk2
+    GROUP BY lk2.jenis_kejahatan 
+    ORDER BY COUNT(lk2.jenis_kejahatan) DESC 
+    LIMIT 1) as jenis_kejahatan_terbanyak
+    FROM tempat t
+LEFT JOIN laporan_kejahatan lk ON t.id_tempat = lk.tempat_kejadian
+$filterBulanLk
+GROUP BY t.id_tempat, t.nama_tempat
+ORDER BY jumlah_laporan DESC";
+
+$result = $conn->query($sql);
+
+// Memproses data menjadi format yang bisa dibaca Groq
+$data = [];
+while ($row = $result->fetch_assoc()) {
+    $data[] = [
+        'nama_tempat' => $row['nama_tempat'],
+        'jumlah_laporan' => $row['jumlah_laporan'],
+        'bulan' => $bulan
+    ];
+}
+
+// Menutup koneksi database
+$conn->close();
+
+// Data yang diambil dari database
+$data = json_encode($data);
+$prompt = "Berikut adalah data jumlah laporan kejahatan per bulan di tahun 2023: $data. Berdasarkan data ini, berikan prediksi jumlah total laporan yang akan terjadi tiap bulan dari januari sampai desember di tahun 2024. Jumlah laporan kira-kira sekitar 30-60 per-bulannya. Sebutkan saja perbulannya dalam bahasa indonesia secara singkat.";
+$fallback = "Prediksi AI belum tersedia. Secara umum, jumlah laporan 2024 dapat diperkirakan berada pada rentang 30-60 laporan per bulan berdasarkan pola data 2023.";
+
+$content = getGroqCompletion($prompt, $fallback);
+?>
