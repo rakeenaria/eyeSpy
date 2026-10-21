@@ -15,9 +15,15 @@
     <?php include 'php/navbar.php'; ?>
     <main class="cctv-detail-page">
         <?php if (!$cctvDetail['storage_ready']): ?>
-            <div class="cctv-notice cctv-notice-error" role="alert">Katalog CCTV belum disiapkan. Silakan jalankan migrasi database yang disediakan.</div>
+            <div class="cctv-notice cctv-notice-error" role="alert">
+                <i class="uil uil-exclamation-triangle"></i>
+                <span>Katalog CCTV belum disiapkan. Silakan jalankan migrasi database yang disediakan.</span>
+            </div>
         <?php elseif (!$camera): ?>
-            <div class="cctv-notice cctv-notice-error" role="alert">Kamera tidak ditemukan atau sudah tidak tersedia pada sumber resmi.</div>
+            <div class="cctv-notice cctv-notice-error" role="alert">
+                <i class="uil uil-exclamation-octagon"></i>
+                <span>Kamera tidak ditemukan atau sudah tidak tersedia pada sumber resmi.</span>
+            </div>
             <a class="cctv-back-link" href="daftarCCTV.php"><i class="uil uil-arrow-left"></i> Kembali ke daftar CCTV</a>
         <?php else: ?>
             <?php
@@ -40,7 +46,10 @@
             </div>
 
             <?php if ($cctvDetail['sync_error']): ?>
-                <div class="cctv-notice" role="status">Metadata terbaru belum dapat dimuat. Status yang ditampilkan berasal dari data tersimpan terakhir.</div>
+                <div class="cctv-notice" role="status">
+                    <i class="uil uil-info-circle"></i>
+                    <span>Metadata terbaru belum dapat dimuat. Status yang ditampilkan berasal dari data tersimpan terakhir.</span>
+                </div>
             <?php endif; ?>
 
             <div class="isi2">
@@ -62,10 +71,11 @@
                 </section>
 
                 <form action="submit_report.php" method="POST" class="report-form">
+                    <h3><i class="uil uil-shield-exclamation"></i> Laporkan Kejadian</h3>
                     <input type="hidden" name="cctv_source" value="<?php echo htmlspecialchars((string) $camera['source'], ENT_QUOTES, 'UTF-8'); ?>">
                     <input type="hidden" name="cctv_camera_id" value="<?php echo htmlspecialchars((string) $camera['external_camera_id'], ENT_QUOTES, 'UTF-8'); ?>">
-                    <textarea name="keterangan" placeholder="Tuliskan keterangan kejadian" required></textarea>
-                    <button type="submit">Laporkan</button>
+                    <textarea name="keterangan" placeholder="Tuliskan keterangan kejadian atau aktivitas yang terpantau pada kamera ini..." required></textarea>
+                    <button type="submit"><i class="uil uil-message"></i> Kirim Laporan</button>
                 </form>
             </div>
 
