@@ -4,6 +4,7 @@
 
 # Vendor
 /vendor/
+/cache/
 
 # Playwright & Debugging logs
 /.playwright-mcp/

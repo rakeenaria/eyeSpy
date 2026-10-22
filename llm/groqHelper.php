@@ -108,10 +108,12 @@ function getGroqCompletion(string $prompt, string $fallback): string
         return groqFallback($fallback, 'fitur AI belum aktif karena GROQ_API_KEY belum diset. Silakan masukkan API Key pada file .env');
     }
 
+    $model = getenv('GROQ_MODEL') ?: 'qwen/qwen3.8-27b';
+
     try {
-        $model = getenv('GROQ_MODEL') ?: 'qwen/qwen3.8-27b';
         $groq = new Groq($apiKey);
 
+        // Batasi max_tokens agar tidak melampaui limit TPM (Tokens Per Minute) Groq free tier (6.000 TPM)
         $chatCompletion = $groq->chat()->completions()->create([
             'model' => $model,
             'messages' => [
@@ -120,6 +122,8 @@ function getGroqCompletion(string $prompt, string $fallback): string
                     'content' => $prompt,
                 ],
             ],
+            'max_tokens' => 700,
+            'temperature' => 0.5,
         ]);
 
         $content = $chatCompletion['choices'][0]['message']['content'] ?? '';
@@ -131,7 +135,38 @@ function getGroqCompletion(string $prompt, string $fallback): string
         return formatGroqContent($content);
     } catch (Throwable $error) {
         $msg = $error->getMessage();
-        error_log('Groq API error: ' . $msg);
+        error_log('Groq API error (' . $model . '): ' . $msg);
+
+        // Jika terkena Rate Limit (429 / Too Many Requests / Request too large TPM limit), coba fallback otomatis ke model alternatif
+        if (str_contains($msg, '429') || str_contains($msg, 'Too Many Requests') || str_contains($msg, 'Request too large') || str_contains($msg, 'rate_limit')) {
+            $altModel = ($model === 'qwen/qwen3.8-27b') ? 'openai/gpt-oss-20b' : 'qwen/qwen3.8-27b';
+            try {
+                $groq = new Groq($apiKey);
+                $altCompletion = $groq->chat()->completions()->create([
+                    'model' => $altModel,
+                    'messages' => [
+                        [
+                            'role' => 'user',
+                            'content' => $prompt,
+                        ],
+                    ],
+                    'max_tokens' => 600,
+                    'temperature' => 0.5,
+                ]);
+
+                $altContent = $altCompletion['choices'][0]['message']['content'] ?? '';
+                if (trim($altContent) !== '') {
+                    return formatGroqContent($altContent);
+                }
+            } catch (Throwable $altError) {
+                error_log('Groq fallback model error: ' . $altError->getMessage());
+            }
+
+            return groqFallback(
+                $fallback,
+                'Layanan AI mencapai batas kuota per menit (TPM Rate Limit). Silakan tunggu sekitar 1 menit lalu refresh halaman.'
+            );
+        }
 
         // Jika model tidak ditemukan atau ditutup, beri pesan spesifik
         if (str_contains($msg, 'does not exist') || str_contains($msg, 'decommissioned')) {
@@ -142,6 +177,6 @@ function getGroqCompletion(string $prompt, string $fallback): string
             return groqFallback($fallback, 'API Key Groq tidak valid. Periksa kembali GROQ_API_KEY pada file .env.');
         }
 
-        return groqFallback($fallback, 'respons Groq tidak dapat dimuat (' . htmlspecialchars($msg, ENT_QUOTES, 'UTF-8') . ').');
+        return groqFallback($fallback, 'respons Groq tidak dapat dimuat saat ini. Periksa koneksi internet atau coba beberapa saat lagi.');
     }
 }

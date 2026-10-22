@@ -4,6 +4,24 @@ include __DIR__ . '/../php/koneksi.php';
 
 // Ambil nilai bulan dari form
 $bulanInt = getSelectedMonth();
+$bulanLabel = $bulanInt !== null ? str_pad((string)$bulanInt, 2, '0', STR_PAD_LEFT) : '00';
+
+// Periksa apakah sudah ada hasil analisis AI yang tersimpan di cache (TTL 6 jam)
+$cacheDir = __DIR__ . '/../cache';
+if (!is_dir($cacheDir)) {
+    @mkdir($cacheDir, 0777, true);
+}
+$cacheFile = $cacheDir . '/laporan_mitigasi_' . $bulanLabel . '.json';
+$cacheTtl = 21600; // 6 jam (data 2023 adalah data historis)
+
+if (file_exists($cacheFile) && (time() - filemtime($cacheFile) < $cacheTtl)) {
+    $cached = json_decode(file_get_contents($cacheFile), true);
+    if (!empty($cached['content'])) {
+        $content = $cached['content'];
+        return;
+    }
+}
+
 $filterBulan = $bulanInt !== null ? "WHERE MONTH(lk.waktu) = $bulanInt" : "";
 
 // Modifikasi query SQL untuk memfilter dan mengurutkan berdasarkan waktu terbaru dan membatasi jumlah laporan
@@ -17,14 +35,14 @@ $sql = "SELECT t.id_tempat, t.nama_tempat, lk.waktu, jk.nama_jenis, lk.keteranga
 
 $result = $conn->query($sql);
 
-// Memproses data menjadi format yang bisa dibaca Groq
+// Memproses data menjadi format yang ringkas agar hemat token
 $data = [];
 while ($row = $result->fetch_assoc()) {
     $data[] = [
-        'nama_tempat' => $row['nama_tempat'],
-        'waktu' => $row['waktu'],
-        'jenis_kejahatan' => $row['nama_jenis'],
-        'keterangan' => $row['keterangan']
+        'tempat' => $row['nama_tempat'],
+        'waktu' => date('d-m-Y H:i', strtotime($row['waktu'])),
+        'jenis' => $row['nama_jenis'],
+        'ket' => mb_substr((string)$row['keterangan'], 0, 80)
     ];
 }
 
@@ -32,9 +50,24 @@ while ($row = $result->fetch_assoc()) {
 $conn->close();
 
 // Data yang diambil dari database
-$data = json_encode($data);
-$prompt = "Berikut adalah data laporan kejahatan di tahun 2023: $data. Berdasarkan data ini, informasikan tentang laporan per-minggu di bulan terakhir. Berikan saran apa yang sebaiknya dilakukan untuk memitigasi hal tersebut. Jelaskan dalam bahasa indonesia secara singkat.";
-$fallback = "Ringkasan AI belum tersedia. Gunakan tabel laporan di bawah untuk melihat lokasi, jumlah laporan, variasi kejahatan, dan jenis kejahatan terbanyak.";
+$dataJson = json_encode($data);
+$bulanText = $bulanInt !== null ? "bulan ke-$bulanInt tahun 2023" : "tahun 2023";
+$prompt = "Berikut sampel 10 laporan kejahatan $bulanText di DIY: $dataJson. Berikan ringkasan singkat dinamika kejahatan pada periode ini dan berikan 3-4 rekomendasi mitigasi keamanan konkret bagi aparat/warga dalam format poin yang jelas dalam bahasa Indonesia.";
+$fallback = "Ringkasan analitik AI sedang dalam antrean pemrosesan. Anda dapat menggunakan tabel data di bawah untuk melihat rincian lokasi kejadian, variasi kejahatan, dan tren kasus di wilayah DIY.";
 
 $content = getGroqCompletion($prompt, $fallback);
+
+// Simpan ke cache bila berhasil mendapatkan respons valid dari AI
+if ($content && !str_contains($content, 'tidak dapat dimuat') && !str_contains($content, 'mencapai batas kuota') && !str_contains($content, 'belum tersedia')) {
+    @file_put_contents($cacheFile, json_encode([
+        'content' => $content,
+        'created_at' => time()
+    ]));
+} elseif (file_exists($cacheFile)) {
+    // Jika panggilan Groq terkena limit namun ada file cache sebelumnya, gunakan cache tersebut
+    $stale = json_decode(file_get_contents($cacheFile), true);
+    if (!empty($stale['content'])) {
+        $content = $stale['content'];
+    }
+}
 ?>

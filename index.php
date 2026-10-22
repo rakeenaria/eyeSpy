@@ -12,7 +12,7 @@ require_once __DIR__ . '/php/chart.php';
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/navbar.js?v=<?php echo filemtime(__DIR__ . '/js/navbar.js'); ?>" defer></script>
-    <script src="js/groqResponse.js" defer></script>
+    <script src="js/chatbot.js?v=<?php echo filemtime(__DIR__ . '/js/chatbot.js'); ?>" defer></script>
     <link rel="icon" href="gambar/icon.png" type="image/png">
 </head>
 <body>
@@ -111,24 +111,76 @@ require_once __DIR__ . '/php/chart.php';
                 </div>
             </article>
 
-            <!-- Bagian AI Groq (Dipertahankan Utuh Sesuai Instruksi) -->
-            <article class="dashboard-card ai-card">
+            <!-- Chatbot Asisten AI Kejahatan DIY (Ditenagai Groq AI) -->
+            <article class="dashboard-card chatbot-card">
                 <div class="card-header">
                     <div class="card-title-group">
-                        <h3>Prediksi Jumlah Kejahatan 2024</h3>
-                        <p>Analisis prediktif berbasis model kecerdasan buatan Groq LLM.</p>
+                        <h3><i class="uil uil-comment-dots chatbot-header-icon"></i> Tanya Asisten AI eyeSpy</h3>
+                        <p>Tanyakan data kejahatan, titik rawan, jam rawan, atau analisis keamanan DIY.</p>
                     </div>
-                    <span class="card-chip ai-chip"><i class="uil uil-brain"></i> AI Forecasting</span>
+                    <span class="card-chip ai-chip" title="Ditenagai Model Groq AI">
+                        <span class="ai-status-pulse"></span> Groq AI Active
+                    </span>
                 </div>
 
-                <div class="isiPrediksi ai-content-box" id="output">
-                    <?php include 'llm/groqPrediksi.php'; ?>
-                    <input type="hidden" id="content" value="<?php echo htmlspecialchars($content, ENT_QUOTES, 'UTF-8'); ?>">
+                <!-- Chatbot Main Interface -->
+                <div class="chatbot-wrapper">
+                    <!-- Messages Stream -->
+                    <div class="chatbot-messages" id="chatbotMessages" role="log" aria-live="polite">
+                        <!-- Initial Welcome Message from Bot -->
+                        <div class="chat-msg bot-msg">
+                            <div class="chat-avatar bot-avatar">
+                                <i class="uil uil-robot"></i>
+                            </div>
+                            <div class="chat-bubble">
+                                <p>Halo! Saya <strong>eyeSpy AI</strong>, asisten pemantauan data kriminalitas DIY. Anda dapat bertanya tentang data kejahatan 2023, lokasi paling rawan, jam rawan, perbandingan antar kabupaten, maupun tips keamanan rute jalan di Yogyakarta.</p>
+                                <div class="chat-suggestions">
+                                    <span class="suggestion-chip" data-prompt="Di mana titik lokasi paling rawan di DIY?">📍 Titik paling rawan?</span>
+                                    <span class="suggestion-chip" data-prompt="Kapan jam-jam paling rawan kejahatan terjadi?">🕒 Jam paling rawan?</span>
+                                    <span class="suggestion-chip" data-prompt="Bagaimana perbandingan kasus antara Sleman dan Kota Yogyakarta?">📊 Sleman vs Kota Jogja?</span>
+                                    <span class="suggestion-chip" data-prompt="Apa rekomendasi keamanan saat berkendara malam hari di Ringroad?">🛡️ Tips aman malam hari</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div class="chatbot-typing" id="chatbotTyping" style="display: none;">
+                        <div class="chat-avatar bot-avatar mini">
+                            <i class="uil uil-robot"></i>
+                        </div>
+                        <div class="typing-bubble">
+                            <span class="typing-dot"></span>
+                            <span class="typing-dot"></span>
+                            <span class="typing-dot"></span>
+                            <span class="typing-text">eyeSpy AI sedang menganalisis data...</span>
+                        </div>
+                    </div>
+
+                    <!-- Input Bar -->
+                    <form class="chatbot-form" id="chatbotForm" autocomplete="off">
+                        <div class="chatbot-input-wrapper">
+                            <input 
+                                type="text" 
+                                id="chatbotInput" 
+                                placeholder="Ketik pertanyaan terkait kejahatan DIY... (Tekan Enter)" 
+                                maxlength="400"
+                                required
+                            />
+                            <button type="button" class="btn-chat-clear" id="chatbotClearBtn" title="Hapus riwayat chat">
+                                <i class="uil uil-trash-alt"></i>
+                            </button>
+                            <button type="submit" class="btn-chat-send" id="chatbotSendBtn" title="Kirim pertanyaan">
+                                <i class="uil uil-message"></i>
+                                <span>Kirim</span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="ai-footer-note">
-                    <i class="uil uil-info-circle"></i>
-                    <span>Analisis dihasilkan dari ekstrapolasi data kejahatan 2023.</span>
+                    <i class="uil uil-shield-check"></i>
+                    <span>Didukung Groq AI &bull; Basis Data Kriminalitas Resmi DIY 2023</span>
                 </div>
             </article>
         </section>
