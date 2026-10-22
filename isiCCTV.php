@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/CCTV.css?v=<?php echo filemtime('css/CCTV.css'); ?>">
-    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/navbar.css?v=<?php echo filemtime(__DIR__ . '/css/navbar.css'); ?>">
+    <link rel="stylesheet" href="css/CCTV.css?v=<?php echo filemtime(__DIR__ . '/css/CCTV.css'); ?>">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <script src="js/navbar.js" defer></script>
+    <script src="js/navbar.js?v=<?php echo filemtime(__DIR__ . '/js/navbar.js'); ?>" defer></script>
     <link rel="icon" href="gambar/icon.png" type="image/png">
     <title><?php echo $camera ? 'CCTV - ' . htmlspecialchars((string) ($camera['alias_name'] ?: $camera['name']), ENT_QUOTES, 'UTF-8') : 'CCTV'; ?></title>
 </head>

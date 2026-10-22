@@ -1,0 +1,11 @@
+# Environment variables
+.env
+.env.local
+
+# Vendor
+/vendor/
+
+# Playwright & Debugging logs
+/.playwright-mcp/
+*.log
+

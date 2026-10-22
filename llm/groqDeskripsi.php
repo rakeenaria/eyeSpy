@@ -41,7 +41,7 @@ $conn->close();
 
 // Data yang diambil dari database
 $data = json_encode($data);
-$prompt = "Berikut adalah data jumlah laporan kejahatan per bulan di tahun 2023: $data. Berdasarkan data ini, berikan deskripsi jumlah total laporan yang terjadi tiap bulan dari januari sampai desember di tahun 2023. Jelaskan dalam bahasa indonesia secara singkat.";
+$prompt = "Berikut adalah data jumlah laporan kejahatan per bulan di tahun 2023: $data. Berdasarkan data ini, berikan deskripsi jumlah total laporan yang terjadi tiap bulan dari januari sampai desember di tahun 2023. Jelaskan dalam bahasa indonesia secara singkat. Kemudian berikan argumen mengapa jumlah laporan kejahatan di bulan tertentu lebih tinggi dibandingkan bulan lainnya. Berikan juga saran untuk mengurangi jumlah laporan kejahatan di bulan-bulan yang memiliki jumlah laporan tinggi. Buat deskripsi ini dalam format HTML dengan tag <p> untuk setiap paragraf.";
 $fallback = "Deskripsi AI belum tersedia. Data laporan tetap dapat dilihat melalui grafik dan tabel pada halaman ini.";
 
 $content = getGroqCompletion($prompt, $fallback);
