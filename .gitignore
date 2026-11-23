@@ -1,12 +1,22 @@
+# Dependencies
+/node_modules/
+
+# Next.js build output
+/.next/
+/out/
+
 # Environment variables
 .env
 .env.local
+.env.*.local
 
-# Vendor
-/vendor/
-/cache/
-
-# Playwright & Debugging logs
+# Debug & Logs
 /.playwright-mcp/
 *.log
+npm-debug.log*
 
+# Local Cache & Personal Notes
+/cache/
+porto.txt
+.DS_Store
+Thumbs.db

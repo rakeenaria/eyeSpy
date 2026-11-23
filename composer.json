@@ -1,5 +1,0 @@
-{
-    "require": {
-        "lucianotonet/groq-php": "^0.0.4"
-    }
-}

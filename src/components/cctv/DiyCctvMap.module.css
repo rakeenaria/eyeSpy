@@ -1,0 +1,96 @@
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  background: var(--bg-subtle);
+}
+
+.mapCanvas {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.quickBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.regionBtns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.regionBtn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  transition: border-color var(--ease-fast), color var(--ease-fast), background-color var(--ease-fast);
+}
+
+.regionBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dotLive {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #15803D;
+  border: 1.5px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #15803D;
+}
+
+.dotMaint {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #94A3B8;
+  border: 1.5px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #94A3B8;
+}
+
+.dotSelected {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2563EB;
+  border: 1.5px solid #FFFFFF;
+  box-shadow: 0 0 0 1px #2563EB;
+}
+
+@media (max-width: 768px) {
+  .mapWrapper {
+    height: 400px;
+  }
+}

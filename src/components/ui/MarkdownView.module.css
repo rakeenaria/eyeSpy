@@ -1,0 +1,46 @@
+.root {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.root > *:first-child {
+  margin-top: 0;
+}
+
+.root > *:last-child {
+  margin-bottom: 0;
+}
+
+.heading {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 16px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: -0.01em;
+}
+
+.paragraph {
+  margin: 0 0 10px;
+}
+
+.list {
+  margin: 6px 0 12px;
+  padding-left: 20px;
+}
+
+.list li {
+  margin-bottom: 6px;
+}
+
+.list li::marker {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.root strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}

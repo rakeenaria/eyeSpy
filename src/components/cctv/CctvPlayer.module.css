@@ -1,0 +1,73 @@
+.videoBox {
+  position: relative;
+  background: #09090B;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.offlineOverlay {
+  position: absolute;
+  inset: 0;
+  background: #18181B;
+  color: #E4E4E7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  gap: 8px;
+}
+
+.offlineTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.offlineDesc {
+  margin: 0;
+  font-size: 12.5px;
+  color: #A1A1AA;
+  max-width: 360px;
+  line-height: 1.5;
+}
+
+.controlsBar {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.statusText {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.attribution {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.attribution a {
+  color: var(--accent);
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+}
