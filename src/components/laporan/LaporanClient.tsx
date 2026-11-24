@@ -24,7 +24,7 @@ interface ReportsBundle {
 }
 
 const reportsCache = new Map<string, ReportsBundle>();
-const summaryCache = new Map<string, { content: string; model: string }>();
+const summaryCache = new Map<string, { content: string; model: string; basisLabel?: string }>();
 
 export function LaporanClient() {
   const [viewMode, setViewMode] = useState<'incidents' | 'locations'>('incidents');
@@ -34,7 +34,7 @@ export function LaporanClient() {
   const [search, setSearch] = useState('');
 
   const filterKey = `${year}|${month}|${region}`;
-  const summaryKey = `${year}|${month}`;
+  const summaryKey = filterKey;
 
   const [locations, setLocations] = useState<LocationSummaryRow[]>(
     () => reportsCache.get(filterKey)?.locations ?? []
@@ -44,9 +44,11 @@ export function LaporanClient() {
   );
   const [loadingTable, setLoadingTable] = useState<boolean>(() => !reportsCache.has(filterKey));
 
-  const [summary, setSummary] = useState<{ content: string; model: string }>(
-    () => summaryCache.get(summaryKey) ?? { content: '', model: 'Groq AI' }
-  );
+  const [summary, setSummary] = useState<{
+    content: string;
+    model: string;
+    basisLabel?: string;
+  }>(() => summaryCache.get(summaryKey) ?? { content: '', model: 'Groq AI' });
   const [loadingSummary, setLoadingSummary] = useState<boolean>(() => !summaryCache.has(summaryKey));
 
   // Fetch reports bundle whenever year/month/region changes
@@ -102,11 +104,20 @@ export function LaporanClient() {
     let cancelled = false;
     setLoadingSummary(true);
 
-    fetch(`/api/ai/summary?year=${encodeURIComponent(year)}&month=${encodeURIComponent(month)}`)
+    const qs = new URLSearchParams();
+    qs.set('year', year);
+    qs.set('month', month);
+    if (region !== 'Semua Wilayah') qs.set('region', region);
+
+    fetch(`/api/ai/summary?${qs.toString()}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (!cancelled && d?.content) {
-          const val = { content: d.content, model: d.model };
+          const val = {
+            content: d.content,
+            model: d.model,
+            basisLabel: d.basisLabel,
+          };
           summaryCache.set(summaryKey, val);
           setSummary(val);
         }
@@ -118,7 +129,7 @@ export function LaporanClient() {
     return () => {
       cancelled = true;
     };
-  }, [summaryKey, year, month]);
+  }, [summaryKey, year, month, region]);
 
   const filteredLocations = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -180,6 +191,7 @@ export function LaporanClient() {
         content={summary.content}
         model={summary.model}
         loading={loadingSummary}
+        basisLabel={summary.basisLabel}
       />
 
       <div className={styles.toolbar}>

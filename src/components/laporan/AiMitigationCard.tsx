@@ -1,23 +1,46 @@
 'use client';
 
+import Aurora from '@/components/ui/Aurora';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
 import { MarkdownView } from '@/components/ui/MarkdownView';
 import { Skeleton } from '@/components/ui/Skeleton';
 import styles from './AiMitigationCard.module.css';
 
+const AURORA_STOPS = ["#2fb1ff","#64c5ff","#2fb1ff"];
+
 interface AiMitigationCardProps {
   content: string;
   model: string;
   loading: boolean;
+  basisLabel?: string;
 }
 
-export function AiMitigationCard({ content, model, loading }: AiMitigationCardProps) {
+export function AiMitigationCard({
+  content,
+  model,
+  loading,
+  basisLabel,
+}: AiMitigationCardProps) {
   return (
-    <Card>
+    <Card className={styles.auroraCard}>
+      <div className={styles.auroraBg} aria-hidden="true">
+        <Aurora
+          colorStops={AURORA_STOPS}
+          amplitude={1}
+          blend={0.5}
+          height={0.45}
+          speed={1}
+          glow={0.6}
+          lightMode
+        />
+      </div>
       <CardHeader
         title="Analisis AI & Rekomendasi Mitigasi"
-        description="Ringkasan dinamika kejahatan dan langkah pencegahan berdasarkan insiden riil pada periode terpilih."
+        description={
+          basisLabel ||
+          'Analisis berbasis statistik resmi Polda DIY, 5 Polres, Pusiknas Bareskrim Polri & arsip insiden riil pada filter aktif.'
+        }
         action={
           <Badge tone="accent">
             {model === 'database-summary' ? 'Analisis Data' : 'Groq AI'}

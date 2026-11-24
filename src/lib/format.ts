@@ -61,6 +61,12 @@ export function parseMonthFilter(value: string | null | undefined): number | nul
   return null;
 }
 
+export function parseRegionFilter(value: string | null | undefined): string | null {
+  if (!value || value === 'Semua Wilayah') return null;
+  const matched = REGION_OPTIONS.find((opt) => opt !== 'Semua Wilayah' && opt === value);
+  return matched ?? null;
+}
+
 export function formatNumber(value: number | null | undefined): string {
   if (value === null || value === undefined || Number.isNaN(value)) return '—';
   return new Intl.NumberFormat('id-ID').format(value);

@@ -1,9 +1,32 @@
+.auroraCard {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.auroraBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.auroraCard > :not(.auroraBg) {
+  position: relative;
+  z-index: 1;
+}
+
 .scrollArea {
   height: 240px;
   min-height: 240px;
   max-height: 240px;
   overflow-y: auto;
   padding: 16px 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.52) 0%,
+    rgba(255, 255, 255, 0.84) 100%
+  );
 }
 
 .loading {

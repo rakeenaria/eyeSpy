@@ -326,5 +326,8 @@ export async function createCitizenReport(
     ]
   );
 
+  // Invalidate cached AI summaries so new citizen reports are reflected immediately
+  await pool.query('DELETE FROM ai_summary_cache').catch(() => {});
+
   return { id: Number(res.insertId), idTempat: resolvedTempatId };
 }

@@ -2,12 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Loader2, Send, Trash2 } from 'lucide-react';
+import Aurora from '@/components/ui/Aurora';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
 import { MarkdownView } from '@/components/ui/MarkdownView';
 import type { ChatMessage } from '@/types/eyespy';
 import styles from './AiChatbot.module.css';
+
+const AURORA_STOPS = ['#6bb8ff', '#ff9400', '#6bb8ff'];
 
 const QUICK_PROMPTS = [
   'Bandingkan angka kriminalitas 2024 vs 2025',
@@ -79,6 +82,17 @@ export function AiChatbot() {
 
   return (
     <Card className={styles.panel}>
+      <div className={styles.auroraBg} aria-hidden="true">
+        <Aurora
+          colorStops={AURORA_STOPS}
+          amplitude={1}
+          blend={0.5}
+          height={0.45}
+          speed={1}
+          glow={0.6}
+          lightMode
+        />
+      </div>
       <CardHeader
         title="Asisten Analitik AI"
         description="Terkoneksi langsung ke basis data MySQL DIY 2024–2026."

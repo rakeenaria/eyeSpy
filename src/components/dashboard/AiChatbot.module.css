@@ -1,11 +1,31 @@
 .panel {
   height: 100%;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.auroraBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.panel > :not(.auroraBg) {
+  position: relative;
+  z-index: 1;
 }
 
 .chatContainer {
   display: flex;
   flex-direction: column;
   height: 365px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.52) 0%,
+    rgba(255, 255, 255, 0.84) 100%
+  );
 }
 
 .messages {
@@ -46,9 +66,10 @@
 }
 
 .botBubble {
-  background: var(--bg-subtle);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
   color: var(--text-primary);
-  border: 1px solid var(--border-default);
+  border: 1px solid rgba(228, 228, 231, 0.9);
 }
 
 .prompts {
@@ -59,7 +80,8 @@
 }
 
 .promptBtn {
-  background: var(--bg-surface);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(6px);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   padding: 5px 9px;
@@ -87,8 +109,9 @@
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  border-top: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
+  border-top: 1px solid rgba(228, 228, 231, 0.85);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
 }
 
 .input {
