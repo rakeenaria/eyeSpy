@@ -10,14 +10,23 @@ interface AiMitigationCardProps {
   content: string;
   model: string;
   loading: boolean;
+  basisLabel?: string;
 }
 
-export function AiMitigationCard({ content, model, loading }: AiMitigationCardProps) {
+export function AiMitigationCard({
+  content,
+  model,
+  loading,
+  basisLabel,
+}: AiMitigationCardProps) {
   return (
     <Card>
       <CardHeader
         title="Analisis AI & Rekomendasi Mitigasi"
-        description="Ringkasan dinamika kejahatan dan langkah pencegahan berdasarkan insiden riil pada periode terpilih."
+        description={
+          basisLabel ||
+          'Analisis berbasis statistik resmi Polda DIY, 5 Polres, Pusiknas Bareskrim Polri & arsip insiden riil pada filter aktif.'
+        }
         action={
           <Badge tone="accent">
             {model === 'database-summary' ? 'Analisis Data' : 'Groq AI'}
