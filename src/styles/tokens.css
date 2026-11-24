@@ -11,6 +11,13 @@
   --bg-muted: #F1F5F9;
   --bg-hover: #FAFAFA;
 
+  /* Global Frosted Glass Card Surface */
+  --card-bg: rgba(255, 255, 255, 0.5);
+  --card-border: #FFFFFF;
+  --card-blur: blur(16px);
+  --card-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  --card-divider: rgba(255, 255, 255, 0.65);
+
   /* Borders */
   --border-subtle: #F1F5F9;
   --border-default: #E4E4E7;

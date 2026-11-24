@@ -34,8 +34,8 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   padding: 20px;
-  border-bottom: 1px solid var(--border-subtle);
-  background: var(--bg-hover);
+  border-bottom: 1px solid var(--card-divider, var(--border-subtle));
+  background: rgba(255, 255, 255, 0.36);
 }
 
 .metaItem {
@@ -75,8 +75,8 @@
   margin: 0;
   padding: 16px 18px;
   border-radius: var(--radius-md);
-  background: var(--bg-canvas);
-  border: 1px solid var(--border-default);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   font-size: 14px;
   line-height: 1.7;
   color: var(--text-secondary);

@@ -4,7 +4,8 @@
   height: 540px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--card-border, var(--border-default));
+  box-shadow: var(--card-shadow, var(--shadow-xs));
   background: var(--bg-subtle);
 }
 
@@ -34,8 +35,10 @@
   height: 28px;
   padding: 0 10px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border-default);
-  background: var(--bg-surface);
+  border: 1px solid var(--card-border, var(--border-default));
+  background: var(--card-bg, var(--bg-surface));
+  backdrop-filter: var(--card-blur, none);
+  -webkit-backdrop-filter: var(--card-blur, none);
   color: var(--text-secondary);
   font-size: 12px;
   font-weight: 500;

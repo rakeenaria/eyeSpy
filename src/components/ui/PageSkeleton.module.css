@@ -22,8 +22,11 @@
 .cardSkel {
   height: 112px;
   border-radius: var(--radius-lg);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
+  background: var(--card-bg, var(--bg-surface));
+  border: 1px solid var(--card-border, var(--border-default));
+  backdrop-filter: var(--card-blur, none);
+  -webkit-backdrop-filter: var(--card-blur, none);
+  box-shadow: var(--card-shadow, var(--shadow-xs));
   position: relative;
   overflow: hidden;
 }
@@ -31,8 +34,11 @@
 .bigSkel {
   height: 360px;
   border-radius: var(--radius-lg);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
+  background: var(--card-bg, var(--bg-surface));
+  border: 1px solid var(--card-border, var(--border-default));
+  backdrop-filter: var(--card-blur, none);
+  -webkit-backdrop-filter: var(--card-blur, none);
+  box-shadow: var(--card-shadow, var(--shadow-xs));
   position: relative;
   overflow: hidden;
 }

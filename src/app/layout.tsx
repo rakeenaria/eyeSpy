@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { TopNavbar } from '@/components/layout/TopNavbar';
+import Grainient from '@/components/ui/Grainient';
 import '@/styles/globals.css';
+
+const PAGE_BG_COLORS = ["#2191ff","#4991ff","#6db6fb","#8bc7ff","#def3ff"];
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,6 +35,16 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
+        <div className="page-bg-layer" aria-hidden="true">
+          <Grainient
+            colors={PAGE_BG_COLORS}
+            angle={55}
+            flow={0.8}
+            silk={0.35}
+            grainAmount={0}
+            lightMode
+          />
+        </div>
         <TopNavbar />
         <main className="page-shell">{children}</main>
       </body>

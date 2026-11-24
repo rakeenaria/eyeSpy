@@ -27,18 +27,7 @@ function KpiGridSkeleton() {
       aria-busy="true"
     >
       {Array.from({ length: 4 }).map((_, i) => (
-        <div
-          key={i}
-          style={{
-            background: 'var(--bg-surface)',
-            border: '1px solid var(--border-default)',
-            borderRadius: 'var(--radius-lg)',
-            padding: '18px 20px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 10,
-          }}
-        >
+        <div key={i} className={styles.kpiSkeletonCard}>
           <Skeleton width="62%" height={12} />
           <Skeleton width="48%" height={28} />
           <Skeleton width="84%" height={11} />

@@ -84,7 +84,7 @@ export function AiChatbot() {
         description="Terkoneksi langsung ke basis data MySQL DIY 2024–2026."
         action={<Badge tone="accent">{activeModel}</Badge>}
       />
-      <CardBody padding="flush">
+      <CardBody padding="flush" className={styles.bodyStretch}>
         <div className={styles.chatContainer}>
           <div className={styles.messages} ref={scrollRef} role="log" aria-live="polite">
             {messages.map((msg, idx) => (

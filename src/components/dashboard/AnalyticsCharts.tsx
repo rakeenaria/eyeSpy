@@ -27,7 +27,8 @@ const TOOLTIP_STYLE = {
   boxShadow: '0 4px 12px rgba(9,9,11,0.18)',
 };
 
-const AXIS_TICK = { fill: '#71717A', fontSize: 11 };
+const AXIS_TICK = { fill: '#52525B', fontSize: 11 };
+const GRID_STROKE = 'rgba(15, 23, 42, 0.08)';
 
 export function TrendChartCard({ data }: { data: DashboardAnalytics }) {
   const { selectedYear, officialStats, tkpDistribution } = data;
@@ -103,7 +104,7 @@ export function TrendChartCard({ data }: { data: DashboardAnalytics }) {
           <ResponsiveContainer width="100%" height="100%">
             {selectedYear === 'all' ? (
               <BarChart data={yearlyComparison} margin={{ top: 8, right: 12, left: -6, bottom: 0 }}>
-                <CartesianGrid stroke="#F1F5F9" vertical={false} />
+                <CartesianGrid stroke={GRID_STROKE} vertical={false} />
                 <XAxis dataKey="label" tick={{ fill: '#09090B', fontSize: 11.5 }} axisLine={false} tickLine={false} />
                 <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} />
                 <Tooltip
@@ -124,7 +125,7 @@ export function TrendChartCard({ data }: { data: DashboardAnalytics }) {
               </BarChart>
             ) : (
               <BarChart data={singleYearSeries} margin={{ top: 8, right: 12, left: -6, bottom: 0 }}>
-                <CartesianGrid stroke="#F1F5F9" vertical={false} />
+                <CartesianGrid stroke={GRID_STROKE} vertical={false} />
                 <XAxis dataKey="label" tick={{ fill: '#09090B', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <YAxis tick={AXIS_TICK} axisLine={false} tickLine={false} />
                 <Tooltip
@@ -193,7 +194,7 @@ export function SecondaryChartsGrid({ data }: { data: DashboardAnalytics }) {
                 layout="vertical"
                 margin={{ top: 4, right: 18, left: 10, bottom: 0 }}
               >
-                <CartesianGrid stroke="#F1F5F9" horizontal={false} />
+                <CartesianGrid stroke={GRID_STROKE} horizontal={false} />
                 <XAxis type="number" tick={AXIS_TICK} axisLine={false} tickLine={false} />
                 <YAxis
                   type="category"
@@ -240,7 +241,7 @@ export function SecondaryChartsGrid({ data }: { data: DashboardAnalytics }) {
                 layout="vertical"
                 margin={{ top: 4, right: 18, left: 8, bottom: 0 }}
               >
-                <CartesianGrid stroke="#F1F5F9" horizontal={false} />
+                <CartesianGrid stroke={GRID_STROKE} horizontal={false} />
                 <XAxis type="number" tick={AXIS_TICK} axisLine={false} tickLine={false} />
                 <YAxis
                   type="category"
@@ -282,7 +283,7 @@ export function SecondaryChartsGrid({ data }: { data: DashboardAnalytics }) {
                 data={tkpDistribution}
                 margin={{ top: 8, right: 12, left: -12, bottom: 0 }}
               >
-                <CartesianGrid stroke="#F1F5F9" vertical={false} />
+                <CartesianGrid stroke={GRID_STROKE} vertical={false} />
                 <XAxis
                   dataKey="lokasiTkp"
                   tick={{ fill: '#09090B', fontSize: 11.5 }}
